@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">仿微信图片加载器</string>
+    <string name="dir_name">所有图片</string>
+    <string name="dir_count">0</string>
+</resources>
