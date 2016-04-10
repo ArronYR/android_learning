@@ -2,22 +2,33 @@ package com.helloarron.arron.imooc_imageloader;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.helloarron.arron.imooc_imageloader.bean.FolderBean;
+import com.helloarron.arron.imooc_imageloader.util.ImageLoader;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private GridView mGridVIew;
     private List<String> mImgs;
+    private ImageAdapter mImgAdapter;
 
     private RelativeLayout mBottomLy;
     private TextView mDirName;
@@ -36,7 +48,36 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
 
+    private static final int DATA_LOADED = 0x110;
+
     private List<FolderBean> mFolderBeans = new ArrayList<FolderBean>();
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == DATA_LOADED){
+                mProgressDialog.dismiss();
+                // 绑定数据到view中
+                data2View();
+            }
+        }
+    };
+
+    /**
+     * 绑定数据到View
+     */
+    private void data2View() {
+        if (mCurrentDir == null){
+            Toast.makeText(this, "未扫描到任何图片", Toast.LENGTH_LONG).show();
+            return;
+        }
+        mImgs = Arrays.asList(mCurrentDir.list());
+        mImgAdapter = new ImageAdapter(this, mImgs, mCurrentDir.getAbsolutePath());
+        mGridVIew.setAdapter(mImgAdapter);
+
+        mDirCount.setText(mMaxCount+"");
+        mDirName.setText(mCurrentDir.getName());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 cursor.close();
+                // 通知handler扫描图片完成
+                mHandler.sendEmptyMessage(DATA_LOADED);
             }
         }.start();
     }
@@ -117,5 +160,15 @@ public class MainActivity extends AppCompatActivity {
         mBottomLy = (RelativeLayout) findViewById(R.id.id_bottom_ly);
         mDirName = (TextView) findViewById(R.id.id_dir_name);
         mDirCount = (TextView) findViewById(R.id.id_dir_count);
+    }
+
+    @Override
+    protected void onDestroy() {
+        try{
+            mProgressDialog.dismiss();
+        }catch (Exception e) {
+            System.out.println("myDialog取消，失败！");
+        }
+        super.onDestroy();
     }
 }
