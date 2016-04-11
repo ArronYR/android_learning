@@ -11,13 +11,16 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ListPopupWindow;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<FolderBean> mFolderBeans = new ArrayList<FolderBean>();
 
+    private ListImageDirPopupWindow mDirPopupWindow;
+
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -59,9 +64,62 @@ public class MainActivity extends AppCompatActivity {
                 mProgressDialog.dismiss();
                 // 绑定数据到view中
                 data2View();
+                // 初始化popupWindow
+                initPopupWindow();
             }
         }
     };
+
+    private void initPopupWindow() {
+        mDirPopupWindow = new ListImageDirPopupWindow(this, mFolderBeans);
+
+        mDirPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                lightOn();
+            }
+        });
+
+        mDirPopupWindow.setOnDirSelectedListener(new ListImageDirPopupWindow.OnDirSelectedListener() {
+            @Override
+            public void onSelected(FolderBean folderBean) {
+                mCurrentDir = new File(folderBean.getDir());
+                mImgs = Arrays.asList(mCurrentDir.list(new FilenameFilter() {
+                    @Override
+                    public boolean accept(File dir, String filename) {
+                        if (filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png")){
+                            return true;
+                        }
+                        return false;
+                    }
+                }));
+                mImgAdapter = new ImageAdapter(MainActivity.this, mImgs, mCurrentDir.getAbsolutePath());
+                mGridVIew.setAdapter(mImgAdapter);
+
+                mDirCount.setText(mMaxCount+"");
+                mDirName.setText(mCurrentDir.getName());
+                mDirPopupWindow.dismiss();
+            }
+        });
+    }
+
+    /**
+     * 内容区域变亮
+     */
+    private void lightOn() {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = 1.0f;
+        getWindow().setAttributes(lp);
+    }
+
+    /**
+     * 内容区域变黑
+     */
+    private void lightOff(){
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = .3f;
+        getWindow().setAttributes(lp);
+    }
 
     /**
      * 绑定数据到View
@@ -71,7 +129,15 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "未扫描到任何图片", Toast.LENGTH_LONG).show();
             return;
         }
-        mImgs = Arrays.asList(mCurrentDir.list());
+        mImgs = Arrays.asList(mCurrentDir.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String filename) {
+                if (filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png")){
+                    return true;
+                }
+                return false;
+            }
+        }));
         mImgAdapter = new ImageAdapter(this, mImgs, mCurrentDir.getAbsolutePath());
         mGridVIew.setAdapter(mImgAdapter);
 
@@ -90,7 +156,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initEvent(){
-
+        mBottomLy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDirPopupWindow.setAnimationStyle(R.style.dir_popupwindow_anim);
+                mDirPopupWindow.showAsDropDown(mBottomLy, 0, 0);
+                lightOff();
+            }
+        });
     }
 
     /**

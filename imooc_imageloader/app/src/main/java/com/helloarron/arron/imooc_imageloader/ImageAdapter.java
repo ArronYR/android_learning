@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.helloarron.arron.imooc_imageloader.bean.ViewHolder;
 import com.helloarron.arron.imooc_imageloader.util.ImageLoader;
 
 import java.util.HashSet;
@@ -50,7 +49,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-         final ViewHolder viewHolder;
+        final ViewHolder viewHolder;
 
         if (convertView == null){
             convertView = mInflater.inflate(R.layout.item_gridview, parent, false);
@@ -94,6 +93,11 @@ public class ImageAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+
+    private class ViewHolder {
+        private ImageView mImg;
+        private ImageButton mSelect;
     }
 
 }
