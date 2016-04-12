@@ -28,7 +28,7 @@ public class SlideMenu extends HorizontalScrollView {
     private boolean once = false;
 
     public SlideMenu(Context context) {
-        super(context);
+        this(context, null);
     }
 
     /**
@@ -37,7 +37,17 @@ public class SlideMenu extends HorizontalScrollView {
      * @param attrs
      */
     public SlideMenu(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
+    }
+
+    /**
+     * 当使用了自定义属性时，调用
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     */
+    public SlideMenu(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
