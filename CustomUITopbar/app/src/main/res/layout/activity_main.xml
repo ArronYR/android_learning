@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:context="com.helloarron.customuitopbar.MainActivity">
+
+    <com.helloarron.customuitopbar.view.TopBar
+        android:id="@+id/id_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        custom:leftBackground="#c79527"
+        custom:leftText="Back"
+        custom:leftTextColor="#fff"
+        custom:rightText="Next"
+        custom:rightBackground="#c79527"
+        custom:rightTextColor="#fff"
+        custom:title="自定义TopBar"
+        custom:titleTextColor="#fff"
+        custom:titleTextSize="8sp">
+
+    </com.helloarron.customuitopbar.view.TopBar>
+</RelativeLayout>
