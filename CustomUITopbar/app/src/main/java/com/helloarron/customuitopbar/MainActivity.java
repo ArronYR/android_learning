@@ -25,5 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Right Button", Toast.LENGTH_SHORT).show();
             }
         });
+
+        topBar.setLeftIsVisible(false);
     }
 }
