@@ -1,15 +1,18 @@
 package com.helloarron.slidemenuqq50.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+
+import com.helloarron.slidemenuqq50.R;
+import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by arron on 16/4/12.
@@ -26,6 +29,7 @@ public class SlideMenu extends HorizontalScrollView {
     private int mMenuRightPadding = 50;
 
     private boolean once = false;
+    private boolean isOpen = false;
 
     public SlideMenu(Context context) {
         this(context, null);
@@ -49,13 +53,25 @@ public class SlideMenu extends HorizontalScrollView {
     public SlideMenu(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SlideMenu, defStyleAttr, 0);
+
+        int n = typedArray.getIndexCount();
+        for (int i = 0; i < n; i++){
+            int attr = typedArray.getIndex(i);
+            switch (attr){
+                case R.styleable.SlideMenu_rightPadding:
+                    mMenuRightPadding = typedArray.getDimensionPixelSize(attr, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics()));
+                    break;
+                default:
+                    break;
+            }
+        }
+        typedArray.recycle();
+
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         mScreenWidth = outMetrics.widthPixels;
-
-        // dp => px
-        mMenuRightPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics());
     }
 
     /**
@@ -109,11 +125,73 @@ public class SlideMenu extends HorizontalScrollView {
                 int scrollX = getScrollX();
                 if (scrollX >= mMenuWidth/2){
                     this.smoothScrollTo(mMenuWidth, 0);
+                    isOpen = false;
                 }else {
                     this.smoothScrollTo(0,0);
+                    isOpen = true;
                 }
                 return true;
         }
         return super.onTouchEvent(ev);
+    }
+
+    /**
+     * 滚动发生时
+     * @param l
+     * @param t
+     * @param oldl
+     * @param oldt
+     */
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+
+        float scale = l*1.0f / mMenuWidth;
+        float rightScale = 0.7f + 0.3f * scale;
+        float leftScale = 1.0f - 0.3f * scale;
+        float leftAlpha = 1.0f - 0.4f * scale;
+
+        // 调用属性动画，设置TranslationX
+        ViewHelper.setTranslationX(mMenu, l*0.7f);
+        ViewHelper.setScaleX(mMenu, leftScale);
+        ViewHelper.setScaleY(mMenu, leftScale);
+        ViewHelper.setAlpha(mMenu, leftAlpha);
+
+        // 设置内容区域缩放中心店，缩放
+        ViewHelper.setPivotX(mContent, 0);
+        ViewHelper.setPivotY(mContent, mContent.getHeight()/2);
+        ViewHelper.setScaleX(mContent, rightScale);
+        ViewHelper.setScaleY(mContent, rightScale);
+
+        // 设置菜单区域缩放
+    }
+
+    /**
+     * 打开菜单
+     */
+    public void openMenu() {
+        if (isOpen) return;
+        this.smoothScrollTo(0,0);
+        isOpen = true;
+    }
+
+    /**
+     * 关闭菜单
+     */
+    public void closeMenu() {
+        if (!isOpen) return;
+        this.smoothScrollTo(mMenuWidth,0);
+        isOpen = false;
+    }
+
+    /**
+     * 菜单切换
+     */
+    public void toggle() {
+        if (isOpen) {
+            closeMenu();
+        }else {
+            openMenu();
+        }
     }
 }

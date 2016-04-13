@@ -5,4 +5,5 @@
     <string name="slide_item_3">第三个Item</string>
     <string name="slide_item_4">第四个Item</string>
     <string name="slide_item_5">第五个Item</string>
+    <string name="toggle_menu">切换菜单</string>
 </resources>

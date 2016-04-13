@@ -3,6 +3,6 @@
     <attr name="rightPadding" format="dimension"></attr>
 
     <declare-styleable name="SlideMenu">
-        <attr name="rightPadding" format="dimension"></attr>
+        <attr name="rightPadding"></attr>
     </declare-styleable>
 </resources>
