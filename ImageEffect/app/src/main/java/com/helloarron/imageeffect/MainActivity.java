@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, PrimaryColor.class));
                 break;
             case R.id.btnPixelsEffect:
+                startActivity(new Intent(this, PixelsEffect.class));
                 break;
             case R.id.btnColorMatrix:
                 startActivity(new Intent(this, MatrixColor.class));
