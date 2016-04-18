@@ -35,7 +35,8 @@ public class ImageHelper {
         imageMatrix.postConcat(saturationMatrix);
         imageMatrix.postConcat(lumMatrix);
 
-        Paint paint = new Paint();
+        // 抗锯齿
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColorFilter(new ColorMatrixColorFilter(imageMatrix));
 
         canvas.drawBitmap(bm, 0, 0, paint);

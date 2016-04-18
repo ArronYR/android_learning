@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PrimaryColor" />
+        <activity android:name=".MatrixColor" />
     </application>
 
 </manifest>

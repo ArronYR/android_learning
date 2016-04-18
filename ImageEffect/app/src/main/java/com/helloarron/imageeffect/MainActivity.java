@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnPixelsEffect:
                 break;
             case R.id.btnColorMatrix:
+                startActivity(new Intent(this, MatrixColor.class));
                 break;
             default:
                 Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
