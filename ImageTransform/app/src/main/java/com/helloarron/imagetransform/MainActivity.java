@@ -1,6 +1,7 @@
 package com.helloarron.imagetransform;
 
 import android.content.Intent;
+import android.graphics.BitmapShader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,8 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, ImageMatrixTest.class));
                 break;
             case R.id.xfermode:
+                startActivity(new Intent(this, RoundRectXfermodeTest.class));
                 break;
             case R.id.shader:
+                startActivity(new Intent(this, BitmapShaderTest.class));
                 break;
             case R.id.reflect:
                 break;

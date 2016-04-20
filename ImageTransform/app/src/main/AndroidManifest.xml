@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ImageMatrixTest"/>
+        <activity android:name=".RoundRectXfermodeTest"/>
+        <activity android:name=".BitmapShaderTest"/>
     </application>
 
 </manifest>

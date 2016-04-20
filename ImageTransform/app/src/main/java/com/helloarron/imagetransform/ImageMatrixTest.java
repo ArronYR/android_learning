@@ -70,6 +70,9 @@ public class ImageMatrixTest extends AppCompatActivity {
         getImageMatrix();
         Matrix matrix = new Matrix();
         matrix.setValues(mImageMatrix);
+        // 系统API
+        // matrix.setScale(2, 2);
+        // matrix.postTranslate(100, 100);
         mImageMatrixView.setImageMatrix(matrix);
         mImageMatrixView.invalidate();
     }
