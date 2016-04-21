@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, ReflectTest.class));
                 break;
             case R.id.mesh:
+                startActivity(new Intent(this, MeshTest.class));
                 break;
         }
     }
