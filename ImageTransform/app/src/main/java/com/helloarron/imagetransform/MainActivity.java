@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, BitmapShaderTest.class));
                 break;
             case R.id.reflect:
+                startActivity(new Intent(this, ReflectTest.class));
                 break;
             case R.id.mesh:
                 break;
