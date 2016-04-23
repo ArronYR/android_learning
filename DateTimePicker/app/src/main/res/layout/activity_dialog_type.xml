@@ -2,6 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/date_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date" />
+
+    <Button
+        android:id="@+id/time_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time" />
 </LinearLayout>
