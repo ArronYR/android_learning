@@ -49,7 +49,7 @@ public class NormalTypeActivity extends AppCompatActivity {
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                setTitle(hourOfDay+":"+minute);
+                setTitle(hourOfDay + ":" + minute);
             }
         });
 
