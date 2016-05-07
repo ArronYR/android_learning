@@ -82,7 +82,7 @@ public class SASpinnerActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Map map = (Map) simpleAdapter.getItem(position);
-        selectedContent.setText("您当前选择的城市是"+ (String) map.get("text"));
+        selectedContent.setText("您当前选择的城市是:"+ (String) map.get("text"));
     }
 
     @Override
