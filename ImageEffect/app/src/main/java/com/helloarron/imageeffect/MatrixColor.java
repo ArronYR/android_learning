@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,6 +72,7 @@ public class MatrixColor extends AppCompatActivity implements View.OnClickListen
             } else {
                 mEts[i].setText(String.valueOf(0));
             }
+            mEts[i].setGravity(Gravity.CENTER);
         }
     }
 
