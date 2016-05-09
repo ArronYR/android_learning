@@ -21,6 +21,11 @@ public class NormalProgressBar extends Activity {
 
         // 显示两种进度条
         setProgressBarVisibility(true);
-        setProgressBarIndeterminateVisibility(true);
+        setProgressBarIndeterminateVisibility(false);
+
+        // 对于带进度的进度条可设置进度 Max:10000,
+        // 启用时需设置setProgressBarIndeterminateVisibility(false)
+        // 设置为Max时，进度条消失。常用9999设置其最大且显示
+        setProgress(9999);
     }
 }

@@ -1,5 +1,6 @@
 package com.helloarron.progresssample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sys_normal_btn:
+                startActivity(new Intent(this, NormalProgressBar.class));
                 break;
             default:
                 break;
