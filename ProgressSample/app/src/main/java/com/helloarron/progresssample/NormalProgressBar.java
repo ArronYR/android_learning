@@ -27,5 +27,6 @@ public class NormalProgressBar extends Activity {
         // 启用时需设置setProgressBarIndeterminateVisibility(false)
         // 设置为Max时，进度条消失。常用9999设置其最大且显示
         setProgress(9999);
+
     }
 }
