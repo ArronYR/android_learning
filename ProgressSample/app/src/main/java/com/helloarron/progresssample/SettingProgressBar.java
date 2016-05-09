@@ -56,11 +56,7 @@ public class SettingProgressBar extends AppCompatActivity implements View.OnClic
         btnReduce.setOnClickListener(this);
         btnReset.setOnClickListener(this);
 
-        int first = progressBar.getProgress();
-        int second = progressBar.getSecondaryProgress();
-        int max = progressBar.getMax();
-
-        tvResult.setText("第一进度百分比: " + (int) (first / (float) max * 100) + "% ,第二进度百分比: " + (int) (second / (float) max * 100) + "%");
+        setTextViewContent();
     }
 
     @Override
@@ -84,5 +80,13 @@ public class SettingProgressBar extends AppCompatActivity implements View.OnClic
             default:
                 break;
         }
+    }
+
+    private void setTextViewContent() {
+        int first = progressBar.getProgress();
+        int second = progressBar.getSecondaryProgress();
+        int max = progressBar.getMax();
+
+        tvResult.setText("第一进度百分比: " + (int) (first / (float) max * 100) + "% ,第二进度百分比: " + (int) (second / (float) max * 100) + "%");
     }
 }
