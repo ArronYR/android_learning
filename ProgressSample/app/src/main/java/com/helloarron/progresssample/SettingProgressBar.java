@@ -65,16 +65,19 @@ public class SettingProgressBar extends AppCompatActivity implements View.OnClic
             case R.id.add: {
                 progressBar.incrementProgressBy(10);
                 progressBar.incrementSecondaryProgressBy(10);
+                setTextViewContent();
                 break;
             }
             case R.id.reduce: {
                 progressBar.incrementProgressBy(-10);
                 progressBar.incrementSecondaryProgressBy(-10);
+                setTextViewContent();
                 break;
             }
             case R.id.reset: {
                 progressBar.setProgress(50);
                 progressBar.setSecondaryProgress(80);
+                setTextViewContent();
                 break;
             }
             default:

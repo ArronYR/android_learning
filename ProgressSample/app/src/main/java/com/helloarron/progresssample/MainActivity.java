@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnSysNormal;
+    private Button btnSysNormal, btnSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         btnSysNormal = (Button) findViewById(R.id.sys_normal_btn);
+        btnSettings = (Button) findViewById(R.id.setting_btn);
+
         btnSysNormal.setOnClickListener(this);
+        btnSettings.setOnClickListener(this);
     }
 
 
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.sys_normal_btn:
                 startActivity(new Intent(this, NormalProgressBar.class));
+                break;
+            case R.id.setting_btn:
+                startActivity(new Intent(this, SettingProgressBar.class));
                 break;
             default:
                 break;

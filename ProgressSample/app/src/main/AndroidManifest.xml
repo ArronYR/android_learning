@@ -18,6 +18,7 @@
         <activity
             android:name=".NormalProgressBar"
             android:theme="@style/Base.Widget.AppCompat.Light.ActionBar" />
+        <activity android:name=".SettingProgressBar"/>
     </application>
 
 </manifest>
