@@ -26,7 +26,7 @@ public class SettingProgressBar extends AppCompatActivity implements View.OnClic
 
     /**
      * 关键方法：
-     * <p/>
+     *
      * setProgress(int);                    设置第一进度
      * setSecondaryProgress(int);           设置第二进度
      * getProgress();                       获取第一进度
