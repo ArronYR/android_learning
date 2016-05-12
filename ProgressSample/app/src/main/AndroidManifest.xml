@@ -20,6 +20,7 @@
             android:theme="@style/Base.Widget.AppCompat.Light.ActionBar" />
         <activity android:name=".SettingProgressBar" />
         <activity android:name=".ProgressDialogSample" />
+        <activity android:name=".CustomProgressBar" />
     </application>
 
 </manifest>

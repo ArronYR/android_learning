@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnSysNormal, btnSettings, btnProgressDialog;
+    private Button btnSysNormal, btnSettings, btnProgressDialog, btnCustom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +18,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSysNormal = (Button) findViewById(R.id.sys_normal_btn);
         btnSettings = (Button) findViewById(R.id.setting_btn);
         btnProgressDialog = (Button) findViewById(R.id.progress_dialog_btn);
+        btnCustom = (Button) findViewById(R.id.custom_btn);
 
         btnSysNormal.setOnClickListener(this);
         btnSettings.setOnClickListener(this);
         btnProgressDialog.setOnClickListener(this);
+        btnCustom.setOnClickListener(this);
     }
 
 
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.progress_dialog_btn:
                 startActivity(new Intent(this, ProgressDialogSample.class));
+                break;
+            case R.id.custom_btn:
+                startActivity(new Intent(this, CustomProgressBar.class));
                 break;
             default:
                 break;

@@ -38,4 +38,11 @@
         android:layout_height="wrap_content"
         android:text="Progress Dialog"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/custom_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Custom ProgressBar"
+        android:textAllCaps="false" />
 </LinearLayout>
