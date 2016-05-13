@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WebViewSample</string>
+    <string name="open_in_browser">Open in Browser</string>
+    <string name="open_in_webview">Open in WebView</string>
+</resources>
