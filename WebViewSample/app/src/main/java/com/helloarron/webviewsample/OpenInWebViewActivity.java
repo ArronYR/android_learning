@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.webkit.ClientCertRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -31,7 +33,7 @@ public class OpenInWebViewActivity extends AppCompatActivity {
             webView.loadUrl(url);
 
             // 覆盖WebView默认通过系统浏览器或第三方浏览器打开链接
-            webView.setWebViewClient(new WebViewClient(){
+            webView.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
                     /**
@@ -42,7 +44,7 @@ public class OpenInWebViewActivity extends AppCompatActivity {
                     return true;
                 }
                 /**
-                 * WebViewClient帮助Webview处理一些页面控制和请求通知
+                 * WebViewClient帮助WebView处理一些页面控制和请求通知
                  * 其中有很多方法，如：
                  *     onReceivedClientCertRequest()
                  *     onPageStarted()
@@ -50,6 +52,23 @@ public class OpenInWebViewActivity extends AppCompatActivity {
                  *     ......
                  */
             });
+
+            // 启用JavaScript
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
         }
+    }
+
+    /**
+     * 改写物理按键 - 返回的逻辑
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+            // 返回上一个页面
+            webView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
