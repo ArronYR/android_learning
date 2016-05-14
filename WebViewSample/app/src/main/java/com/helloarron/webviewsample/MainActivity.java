@@ -1,5 +1,6 @@
 package com.helloarron.webviewsample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +26,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.open_in_browser_btn:
+                startActivity(new Intent(this, OpenInBrowserActivity.class));
                 break;
             case R.id.open_in_webview_btn:
+                startActivity(new Intent(this, OpenInWebViewActivity.class));
                 break;
             default:
                 break;
