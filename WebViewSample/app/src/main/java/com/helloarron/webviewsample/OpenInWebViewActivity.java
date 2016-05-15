@@ -1,5 +1,6 @@
 package com.helloarron.webviewsample;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.webkit.ClientCertRequest;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -19,6 +21,7 @@ public class OpenInWebViewActivity extends AppCompatActivity {
 
     String url = "http://blog.helloarron.com";
     private WebView webView;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +59,52 @@ public class OpenInWebViewActivity extends AppCompatActivity {
             // 启用JavaScript
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
+
+            // WebView加载网页优先使用缓存加载
+            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
+            // 检测网页加载进度
+            webView.setWebChromeClient(new WebChromeClient() {
+                @Override
+                public void onProgressChanged(WebView view, int newProgress) {
+                    // newProgress为0-100之间的整数
+                    if (newProgress == 100) {
+                        // 网页加载完毕，关闭ProgressDialog
+                        closeProgressDialog();
+                    } else {
+                        // 网页正在加载，打开ProgressDialog
+                        openProgressDialog(newProgress);
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * 打开ProgressDialog
+     *
+     * @param newProgress
+     */
+    private void openProgressDialog(int newProgress) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(OpenInWebViewActivity.this);
+            progressDialog.setTitle("正在加载...");
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setMax(100);
+            progressDialog.setProgress(newProgress);
+            progressDialog.show();
+        } else {
+            progressDialog.setProgress(newProgress);
+        }
+    }
+
+    /**
+     * 关闭ProgressDialog
+     */
+    private void closeProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+            progressDialog = null;
         }
     }
 
