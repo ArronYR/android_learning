@@ -1,5 +1,6 @@
 package com.helloarron.fragmentsample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioGroup;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.first:
+                startActivity(new Intent(MainActivity.this, LoadFragmentStaticActivity.class));
                 break;
             case R.id.second:
                 break;
