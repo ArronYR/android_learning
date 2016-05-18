@@ -20,6 +20,7 @@ public class LoadFragmentStaticActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_static);
 
+        // 通过静态加载的方式加载fragment，父组件可以共享fragment中的子组件
         textView = (TextView) findViewById(R.id.text);
         button = (Button) findViewById(R.id.button);
         button.setText("改变");

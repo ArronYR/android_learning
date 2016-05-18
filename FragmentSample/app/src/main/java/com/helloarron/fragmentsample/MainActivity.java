@@ -1,5 +1,7 @@
 package com.helloarron.fragmentsample;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 startActivity(new Intent(MainActivity.this, LoadFragmentStaticActivity.class));
                 break;
             case R.id.second:
+                DynamicLoadFragment();
                 break;
             case R.id.third:
                 break;
@@ -33,5 +36,19 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             default:
                 break;
         }
+    }
+
+    private void DynamicLoadFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        DynamicFragment fragment = new DynamicFragment();
+        /**
+         * fragmentTransaction.add(R.id.frame, fragment);
+         * 这个每次点动态加载都会多一个fragment
+         * 所以可以采用replace方法
+         */
+        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
