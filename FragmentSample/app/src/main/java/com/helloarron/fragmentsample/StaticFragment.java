@@ -24,10 +24,9 @@ public class StaticFragment extends Fragment {
          *     root: 加载布局文件layout到父ViewGroup
          *     attachToRoot: false-不返回父ViewGroup
          */
-        View view = inflater.inflate(R.layout.activity_fragment_static, container, false);
+        View view = inflater.inflate(R.layout.static_fragment, container, false);
 
         TextView textView = (TextView) view.findViewById(R.id.text);
-        Button button = (Button) view.findViewById(R.id.button);
 
         textView.setText("静态加载Fragment");
 
