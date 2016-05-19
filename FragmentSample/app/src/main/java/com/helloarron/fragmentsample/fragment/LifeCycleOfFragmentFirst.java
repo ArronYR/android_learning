@@ -1,4 +1,4 @@
-package com.helloarron.fragmentsample;
+package com.helloarron.fragmentsample.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -10,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.helloarron.fragmentsample.R;
+
 /**
  * Created by arron on 16/5/19.
  */
-public class LifeCycleOfFragment extends Fragment {
+public class LifeCycleOfFragmentFirst extends Fragment {
 
     private TextView textView;
 

@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioGroup;
 
+import com.helloarron.fragmentsample.fragment.DynamicFragment;
+
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
     private RadioGroup radioGroup;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 DynamicLoadFragment();
                 break;
             case R.id.third:
+                startActivity(new Intent(MainActivity.this, LifeCycleActivity.class));
                 break;
             case R.id.fourth:
                 break;

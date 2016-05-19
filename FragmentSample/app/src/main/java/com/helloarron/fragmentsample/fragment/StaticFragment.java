@@ -1,4 +1,4 @@
-package com.helloarron.fragmentsample;
+package com.helloarron.fragmentsample.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,16 +6,14 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
+
+import com.helloarron.fragmentsample.R;
 
 /**
  * Created by arron on 16/5/18.
  */
-public class DynamicFragment extends Fragment {
-
-    private TextView textView;
-    private Button button;
+public class StaticFragment extends Fragment {
 
     @Nullable
     @Override
@@ -29,17 +27,10 @@ public class DynamicFragment extends Fragment {
          */
         View view = inflater.inflate(R.layout.fragment, container, false);
 
-        textView = (TextView) view.findViewById(R.id.text);
-        textView.setText("动态加载Fragment");
+        TextView textView = (TextView) view.findViewById(R.id.text);
 
-        button = (Button) view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textView.setText("TextView改变了");
-            }
-        });
-        
+        textView.setText("静态加载Fragment");
+
         return view;
     }
 }
