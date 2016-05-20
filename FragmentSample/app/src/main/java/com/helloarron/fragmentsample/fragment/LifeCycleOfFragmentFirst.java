@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.helloarron.fragmentsample.R;
@@ -18,6 +19,7 @@ import com.helloarron.fragmentsample.R;
 public class LifeCycleOfFragmentFirst extends Fragment {
 
     private TextView textView;
+    private Button button;
 
     // 启动Fragment -> 屏幕锁屏 -> 屏幕解锁 -> 切换到其他Fragment -> 回到桌面 -> 回到应用 -> 退出Fragment
 
@@ -43,6 +45,14 @@ public class LifeCycleOfFragmentFirst extends Fragment {
 
         textView = (TextView) view.findViewById(R.id.text);
         textView.setText("第一个Fragment");
+
+        button = (Button) view.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setText("TextView改变了");
+            }
+        });
 
         Log.i("Main", "Fragment-1--onCreateView");
         return view;

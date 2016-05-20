@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".LoadFragmentStaticActivity" />
         <activity android:name=".LifeCycleActivity" />
+        <activity android:name=".CommunicateActivity" />
     </application>
 
 </manifest>

@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 startActivity(new Intent(MainActivity.this, LifeCycleActivity.class));
                 break;
             case R.id.fourth:
+                startActivity(new Intent(MainActivity.this, CommunicateActivity.class));
                 break;
             default:
                 break;
