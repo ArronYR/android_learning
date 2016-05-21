@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button btnView, btnFragment;
+    private Button btnView, btnFragment, btnFragmentState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +17,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnView = (Button) findViewById(R.id.view_btn);
         btnFragment = (Button) findViewById(R.id.fragment_btn);
+        btnFragmentState = (Button) findViewById(R.id.fragment_state_btn);
 
         btnView.setOnClickListener(this);
         btnFragment.setOnClickListener(this);
+        btnFragmentState.setOnClickListener(this);
     }
 
     @Override
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.fragment_btn:
                 startActivity(new Intent(MainActivity.this, FragmentPagerActivity.class));
+                break;
+            case R.id.fragment_state_btn:
+                startActivity(new Intent(MainActivity.this, FragmentPagerStateActivity.class));
                 break;
             default:
                 break;
