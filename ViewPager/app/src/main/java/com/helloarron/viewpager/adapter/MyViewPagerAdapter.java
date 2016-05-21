@@ -1,4 +1,4 @@
-package com.helloarron.viewpager;
+package com.helloarron.viewpager.adapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
@@ -9,12 +9,12 @@ import java.util.List;
 /**
  * Created by arron on 16/5/20.
  */
-public class MyPagerAdapter extends PagerAdapter {
+public class MyViewPagerAdapter extends PagerAdapter {
 
     private List<View> viewList;
     private List<String> titleList;
 
-    public MyPagerAdapter(List<View> viewList, List<String> titleList){
+    public MyViewPagerAdapter(List<View> viewList, List<String> titleList){
         this.viewList = viewList;
         this.titleList = titleList;
     }
