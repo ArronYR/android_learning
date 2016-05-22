@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, StaticVFActivity.class));
                 break;
             case R.id.dynamic_btn:
+                startActivity(new Intent(MainActivity.this, DynamicVFActivity.class));
                 break;
             default:
                 break;

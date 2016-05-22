@@ -40,13 +40,13 @@ public class StaticVFActivity extends AppCompatActivity {
             }
             case MotionEvent.ACTION_MOVE: {
                 // 向右滑动 前一页
-                if (event.getX() - startX > 100){
+                if (event.getX() - startX > 100) {
                     flipper.setInAnimation(this, R.anim.left_in);
                     flipper.setOutAnimation(this, R.anim.left_in);
                     flipper.showPrevious();
                 }
                 // 向左滑动 下一页
-                if (startX - event.getX() > 100){
+                if (startX - event.getX() > 100) {
                     flipper.setInAnimation(this, R.anim.right_in);
                     flipper.setOutAnimation(this, R.anim.right_out);
                     flipper.showNext();
