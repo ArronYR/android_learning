@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.helloarron.viewpager.adapter.MyFragmentPagerAdapter;
 import com.helloarron.viewpager.adapter.MyFragmentStatePagerAdapter;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by arron on 16/5/21.
  */
-public class FragmentPagerStateActivity extends AppCompatActivity {
+public class FragmentPagerStateActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
     private ViewPager pager;
     private PagerTabStrip tab;
@@ -66,5 +67,23 @@ public class FragmentPagerStateActivity extends AppCompatActivity {
 
         // ViewPager加载适配器
         pager.setAdapter(pagerAdapter);
+
+        // pager设置监听器
+        pager.setOnPageChangeListener(this);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Toast.makeText(this, "当前是第"+ (position+1) +"页", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
