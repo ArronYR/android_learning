@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnUp = (Button) findViewById(R.id.up);
         btnDown = (Button) findViewById(R.id.down);
+        btnUp.setOnClickListener(this);
+        btnDown.setOnClickListener(this);
+
         content = (TextView) findViewById(R.id.content);
         scroll = (ScrollView) findViewById(R.id.scrollView);
 
@@ -59,8 +62,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.up:
+                // scroll.scrollTo(0, -80);
+                scroll.scrollBy(0, -80);
                 break;
             case R.id.down:
+                // scroll.scrollTo(0, 80);
+                scroll.scrollBy(0, 80);
                 break;
             default:
                 break;
