@@ -68,7 +68,7 @@ public class ImageAdapter extends BaseAdapter {
         // image.setBackgroundResource(res[position]);
         // 循环播放
         image.setBackgroundResource(res[position % res.length]);
-        image.setLayoutParams(new Gallery.LayoutParams(800, 600));
+        image.setLayoutParams(new Gallery.LayoutParams(400, 300));
         image.setScaleType(ImageView.ScaleType.FIT_XY);
 
         return image;
