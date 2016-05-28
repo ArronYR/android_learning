@@ -1,6 +1,7 @@
 package com.helloarron.baseadapter.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class MyAdapter extends BaseAdapter {
 
     private List<ItemBean> mList;
     private LayoutInflater mInflater;
+    public long SumTime;
 
     public MyAdapter(Context context, List<ItemBean> itemBeanList) {
         this.mList = itemBeanList;
@@ -43,6 +45,7 @@ public class MyAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        long startTime = System.nanoTime();
         /**
          * 方式一
          */
@@ -89,6 +92,10 @@ public class MyAdapter extends BaseAdapter {
         viewHolder.image.setImageResource(bean.ItemImageResId);
         viewHolder.title.setText(bean.ItemTitle);
         viewHolder.content.setText(bean.ItemContent);
+
+        long endTime = System.nanoTime();
+        SumTime += (endTime-startTime);
+        Log.i("Time:", String.valueOf(SumTime));
 
         return convertView;
 
