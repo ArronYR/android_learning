@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.helloarron.baseadapter.adapter.MyAdapter;
 import com.helloarron.baseadapter.bean.ItemBean;
 
 import java.util.ArrayList;
@@ -25,5 +26,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         listView = (ListView) findViewById(R.id.lv_list);
+        listView.setAdapter(new MyAdapter(this, itemBeanList));
     }
 }
