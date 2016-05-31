@@ -24,4 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/load_net_image" />
+
+    <Button
+        android:id="@+id/load_pg_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/load_pg" />
 </LinearLayout>
