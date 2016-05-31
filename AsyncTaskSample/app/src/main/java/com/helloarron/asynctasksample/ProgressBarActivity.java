@@ -24,12 +24,25 @@ public class ProgressBarActivity extends AppCompatActivity {
         mTask.execute();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING){
+            // cancel只是将对应的线程标记为取消状态，并没有真正停止
+            // 无法在外部终止正在执行的线程，需要在线程内部判断
+            mTask.cancel(true);
+        }
+    }
+
     class MyAsyncTask extends AsyncTask<Void, Integer, Void>{
 
         @Override
         protected Void doInBackground(Void... params) {
             // 模拟进度更新
             for (int i = 0; i < 100; i++) {
+                if (isCancelled()){
+                    break;
+                }
                 publishProgress(i);
                 try {
                     // 延缓进度
@@ -44,6 +57,9 @@ public class ProgressBarActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
+            if (isCancelled()){
+                return;
+            }
             mProgressBar.setProgress(values[0]);
         }
     }
