@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.helloarron.asyncloadnews.ImageLoader;
 import com.helloarron.asyncloadnews.R;
 import com.helloarron.asyncloadnews.bean.NewsBean;
 
@@ -55,6 +56,10 @@ public class NewsAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.ivIcon.setImageResource(R.mipmap.ic_launcher);
+        // 设置Tag，标志图片，以免图片缓存加载错误
+        String url = mList.get(position).newsIconUrl;
+        viewHolder.ivIcon.setTag(url);
+        new ImageLoader().showImgByThread(viewHolder.ivIcon, url);
         viewHolder.tvTitle.setText(mList.get(position).newsTitle);
         viewHolder.tvContent.setText(mList.get(position).newsContent);
 
