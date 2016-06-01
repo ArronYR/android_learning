@@ -2,6 +2,7 @@ package com.helloarron.asyncloadnews;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
@@ -30,6 +31,12 @@ public class ImageLoader {
         }
     };
 
+    /**
+     * 使用多线程加载图片
+     *
+     * @param imageView
+     * @param url
+     */
     public void showImgByThread(ImageView imageView, final String url) {
         mImageView = imageView;
         mUrl = url;
@@ -61,5 +68,38 @@ public class ImageLoader {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 使用异步形式加载图片
+     *
+     * @param imageView
+     * @param url
+     */
+    public void showImgByAsync(ImageView imageView, final String url) {
+        new NewsAsyncTask(imageView, url).execute(url);
+    }
+
+    private class NewsAsyncTask extends AsyncTask<String, Void, Bitmap> {
+        private ImageView mImageView;
+        private String mUrl;
+
+        public NewsAsyncTask(ImageView imageView, String url) {
+            this.mImageView = imageView;
+            this.mUrl = url;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            return getBitmapFromUrl(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            if (mImageView.getTag().equals(mUrl)) {
+                mImageView.setImageBitmap(bitmap);
+            }
+        }
     }
 }

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 实现网络异步访问
      */
-    class NewsAsyncTask extends AsyncTask<String, Void, List<NewsBean>> {
+    private class NewsAsyncTask extends AsyncTask<String, Void, List<NewsBean>> {
 
         @Override
         protected List<NewsBean> doInBackground(String... params) {

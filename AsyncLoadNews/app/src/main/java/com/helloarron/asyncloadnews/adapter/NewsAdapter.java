@@ -59,7 +59,10 @@ public class NewsAdapter extends BaseAdapter {
         // 设置Tag，标志图片，以免图片缓存加载错误
         String url = mList.get(position).newsIconUrl;
         viewHolder.ivIcon.setTag(url);
-        new ImageLoader().showImgByThread(viewHolder.ivIcon, url);
+        // 使用多线程加载图片
+        // new ImageLoader().showImgByThread(viewHolder.ivIcon, url);
+        // 使用异步加载图片
+        new ImageLoader().showImgByAsync(viewHolder.ivIcon, url);
         viewHolder.tvTitle.setText(mList.get(position).newsTitle);
         viewHolder.tvContent.setText(mList.get(position).newsContent);
 
