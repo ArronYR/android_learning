@@ -21,10 +21,12 @@ public class NewsAdapter extends BaseAdapter {
 
     private List<NewsBean> mList;
     private LayoutInflater mInflater;
+    private ImageLoader mImageLoader;
 
     public NewsAdapter(Context context, List<NewsBean> newsList) {
         this.mInflater = LayoutInflater.from(context);
         this.mList = newsList;
+        this.mImageLoader = new ImageLoader();
     }
 
     @Override
@@ -62,7 +64,7 @@ public class NewsAdapter extends BaseAdapter {
         // 使用多线程加载图片
         // new ImageLoader().showImgByThread(viewHolder.ivIcon, url);
         // 使用异步加载图片
-        new ImageLoader().showImgByAsync(viewHolder.ivIcon, url);
+        mImageLoader.showImgByAsync(viewHolder.ivIcon, url);
         viewHolder.tvTitle.setText(mList.get(position).newsTitle);
         viewHolder.tvContent.setText(mList.get(position).newsContent);
 
