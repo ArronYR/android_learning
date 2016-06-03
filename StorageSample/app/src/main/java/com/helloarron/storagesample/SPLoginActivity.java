@@ -1,5 +1,6 @@
 package com.helloarron.storagesample;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +18,16 @@ public class SPLoginActivity extends AppCompatActivity implements View.OnClickLi
     private CheckBox checkBox;
     private Button btnLogin, btnCancel;
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        editor = preferences.edit();
 
         etUsername = (EditText) findViewById(R.id.et_username);
         etPwd = (EditText) findViewById(R.id.et_pwd);
