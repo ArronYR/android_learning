@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by arron on 16/6/3.
@@ -37,15 +38,44 @@ public class SPLoginActivity extends AppCompatActivity implements View.OnClickLi
 
         btnLogin.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
+
+        String userName = preferences.getString("userName", "");
+        if (userName == null) {
+            checkBox.setChecked(false);
+        } else {
+            checkBox.setChecked(true);
+            etUsername.setText(userName);
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.login_btn:
+            case R.id.login_btn: {
+                String name = etUsername.getText().toString().trim();
+                String pwd = etPwd.getText().toString().trim();
+                if ("admin".equals(name) && "123456".equals(pwd)) {
+                    if (checkBox.isChecked()) {
+                        editor.putString("userName", name);
+                        editor.commit();
+                    } else {
+                        editor.remove("userName");
+                        editor.commit();
+                    }
+                    Toast.makeText(SPLoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SPLoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
+                }
                 break;
-            case R.id.cancel_btn:
+            }
+            case R.id.cancel_btn:{
+                if (!checkBox.isChecked()){
+                    editor.remove("userName");
+                    editor.commit();
+                }
+                this.finish();
                 break;
+            }
             default:
                 break;
         }
