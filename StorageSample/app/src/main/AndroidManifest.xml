@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SPLoginActivity" />
+        <activity android:name=".SQLiteActivity" />
     </application>
 
 </manifest>

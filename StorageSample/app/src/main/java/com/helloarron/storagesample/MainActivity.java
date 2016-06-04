@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, SPLoginActivity.class));
                 break;
             case R.id.sql_btn:
+                startActivity(new Intent(MainActivity.this, SQLiteActivity.class));
                 break;
             case R.id.cp_btn:
                 break;
