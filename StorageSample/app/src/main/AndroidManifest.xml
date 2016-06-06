@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".SPLoginActivity" />
         <activity android:name=".SQLiteActivity" />
+        <activity android:name=".FileActivity" />
     </application>
 
 </manifest>
