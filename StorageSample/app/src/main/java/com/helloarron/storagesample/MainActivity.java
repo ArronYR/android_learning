@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.file_btn:
                 startActivity(new Intent(MainActivity.this, FileActivity.class));
                 break;
-            case R.id.cp_btn:
-                break;
             default:
                 break;
         }

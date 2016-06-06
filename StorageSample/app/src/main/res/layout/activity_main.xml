@@ -44,12 +44,5 @@
             android:text="File"
             android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/cp_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Content Provider"
-            android:textAllCaps="false" />
-
     </LinearLayout>
 </RelativeLayout>
