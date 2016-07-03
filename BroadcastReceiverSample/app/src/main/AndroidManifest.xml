@@ -15,6 +15,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".BCRTestNormal1">
+            <intent-filter>
+                <action android:name="BCR_Normal" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".BCRTestNormal2">
+            <intent-filter>
+                <action android:name="BCR_Normal" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".BCRTestOrdered1">
+            <intent-filter>
+                <action android:name="BCR_Ordered" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".BCRTestOrdered2">
+            <intent-filter>
+                <action android:name="BCR_Ordered" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
