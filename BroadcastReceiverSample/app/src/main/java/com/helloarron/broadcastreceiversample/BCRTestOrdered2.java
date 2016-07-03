@@ -14,14 +14,14 @@ public class BCRTestOrdered2 extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String msg = intent.getStringExtra("msg");
-        Log.i("BCReceiver", "测试2收到消息: "+msg);
-        Toast.makeText(context, "测试2收到消息: "+msg, Toast.LENGTH_SHORT).show();
+        Log.i("BCReceiver", "测试2收到消息: " + msg);
+        Toast.makeText(context, "测试2收到消息: " + msg, Toast.LENGTH_SHORT).show();
         // 普通广播是不能被截断的
         // abortBroadcast();
 
         Bundle bundle = getResultExtras(true);
         String test = bundle.getString("test");
-        Log.i("BCReceiver", "截断得到的数据结果: "+test);
-        Toast.makeText(context, "截断得到的数据结果: "+test, Toast.LENGTH_SHORT).show();
+        Log.i("BCReceiver", "截断得到的数据结果: " + test);
+        Toast.makeText(context, "截断得到的数据结果: " + test, Toast.LENGTH_SHORT).show();
     }
 }

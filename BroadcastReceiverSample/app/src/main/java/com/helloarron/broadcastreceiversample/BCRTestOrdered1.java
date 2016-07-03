@@ -14,8 +14,10 @@ public class BCRTestOrdered1 extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String msg = intent.getStringExtra("msg");
-        Log.i("BCReceiver", "测试1收到消息: "+msg);
-        Toast.makeText(context, "测试1收到消息: "+msg, Toast.LENGTH_SHORT).show();
+        Log.i("BCReceiver", "测试1收到消息: " + msg);
+        Toast.makeText(context, "测试1收到消息: " + msg, Toast.LENGTH_SHORT).show();
+        // 普通广播是不能被截断的
+        abortBroadcast();
 
         // 广播截断，向后发送数据
         Bundle bundle = new Bundle();

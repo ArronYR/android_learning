@@ -44,9 +44,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.ordered_btn: {
+                Intent intent = new Intent();
+                intent.putExtra("msg", "这是一条有序广播");
+                intent.setAction("BCR_Ordered");
+                sendOrderedBroadcast(intent, null);
                 break;
             }
             case R.id.async_btn: {
+                // 先发送
+                Intent intent = new Intent();
+                intent.putExtra("msg", "这是一条异步广播");
+                intent.setAction("BCR_Sticky");
+                sendStickyBroadcast(intent);
+
+                // 后注册
+                IntentFilter intentFilter = new IntentFilter("BCR_Sticky");
+                BCRTestSticky test = new BCRTestSticky();
+                registerReceiver(test, intentFilter);
                 break;
             }
             default:
