@@ -67,4 +67,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        /**
+         * 动态注册的最好在onDestroy中销毁注册
+         * 可以将接收类定义在全局，然后在此销毁
+         * unregisterReceiver(receiver);
+         */
+    }
+
+    /**
+     * BroadcastReceiver生命周期只有10s左右
+     * 在BroadcastReceiver里面不要做一些比较耗时的操作
+     * 应该通过发送Intent给Service，有Service来完成处理
+     * 不能使用子线程
+     */
 }
